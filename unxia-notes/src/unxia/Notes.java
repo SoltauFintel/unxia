@@ -128,6 +128,6 @@ public class Notes implements Unxia {
 	}
 
 	Document byId(String id) throws NotesException {
-		return database.getDocumentByID(id);
+		return database.getDocumentByUNID(id);
 	}
 }

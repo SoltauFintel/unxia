@@ -43,14 +43,14 @@ public class NotesMailFolder implements UnxiaMailFolder {
 		try {
 			List<UnxiaMail> ret = new ArrayList<UnxiaMail>();
 			ViewEntryCollection entries = folder.getAllEntries();
-			ViewEntry entry = entries.getFirstEntry();
+			ViewEntry entry = entries.getLastEntry();
 			int i = 0;
 			while (entry != null && (max < 0 || i++ < max)) {
 				Document d = entry.getDocument();
 				ret.add(doc2Mail(d));
 				d.recycle();
 
-				entry = entries.getNextEntry();
+				entry = entries.getPrevEntry();
 			}
 			entries.recycle();
 			return ret;

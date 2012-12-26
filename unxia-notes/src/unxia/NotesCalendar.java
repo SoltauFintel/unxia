@@ -78,7 +78,14 @@ public class NotesCalendar implements UnxiaCalendar {
 		e.setBody(d.getItemValueString("Body"));
 		e.setFrom(d.getItemValueString("From"));
 		e.setLocation(d.getItemValueString("Location"));
-		e.setType(Integer.parseInt(d.getItemValueString("AppointmentType")));
+		try {
+			e.setType(Integer.parseInt(d.getItemValueString("AppointmentType")));
+		} catch (NumberFormatException e1) {
+			System.err.println("AppointmentType '"
+					+ d.getItemValueString("AppointmentType")
+					+ "' ist keine Zahl! ID: " + d.getUniversalID());
+			e.setType(-1);
+		}
 	}
 	
 	private String datumuhrzeit(Document d, String feldname) throws NotesException {
@@ -115,7 +122,7 @@ public class NotesCalendar implements UnxiaCalendar {
 			DateTime startDate = notes.session.createDateTime(e.getNewBegin());
 			DateTime endDate = notes.session.createDateTime(e.getNewEnd());
 			d.replaceItemValue("Form", "Appointment");
-			d.replaceItemValue("AppointmentType", e.getType());
+			d.replaceItemValue("AppointmentType", "" + e.getType());
 			d.replaceItemValue("Subject", e.getSubject());
 			d.replaceItemValue("$PublicAccess", "1"); // "0" privat
 			d.replaceItemValue("CALENDARDATETIME", startDate);
@@ -167,7 +174,11 @@ public class NotesCalendar implements UnxiaCalendar {
 	@Override
 	public boolean remove(String id) {
 		try {
-			return notes.byId(id).remove(false);
+			Document d = notes.byId(id);
+			if (d == null) {
+				throw new UnxiaException("Kalendereintrag " + id + " nicht vorhanden!");
+			}
+			return d.remove(false);
 		} catch (NotesException e) {
 			throw new UnxiaException(e);
 		}

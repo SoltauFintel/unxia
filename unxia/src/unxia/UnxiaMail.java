@@ -1,5 +1,6 @@
 package unxia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,11 +16,11 @@ public class UnxiaMail {
 	private String from;
 	private java.util.Date date = null;
 	private String body = "";
-	private List<String> toList;
-	private List<String> ccList;
-	private List<String> bccList;
+	private List<String> toList = new ArrayList<String>();
+	private List<String> ccList = new ArrayList<String>();
+	private List<String> bccList = new ArrayList<String>();
 	/** Dateinamen der Anlagen */
-	private List<String> attachments;
+	private List<String> attachments = new ArrayList<String>();
 	private String principal;
 
 	public void setId(String id) {

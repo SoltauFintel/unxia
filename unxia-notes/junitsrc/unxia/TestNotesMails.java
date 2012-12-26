@@ -34,10 +34,10 @@ public class TestNotesMails {
 		try {
 			UnxiaMailFolder inbox = mc.getMailInboxFolder();
 			try {
-				List<UnxiaMail> mails = inbox.getEntries(4);
+				List<UnxiaMail> mails = inbox.getEntries(40);
 				for (UnxiaMail mail : mails) {
-					System.out.println("- " + mail.getDate().toString()
-							+ " | " + mail.getFrom()
+					System.out.println("- " + mail.getDate().toString() // z.B. "Tue Dec 25 16:36:22 CET 2012"
+							+ " | " + mail.getFrom() // z.B. "CN=Max Muster/O=Firma"
 							+ " | \"" + mail.getSubject() + "\"");
 				}
 			} finally {
@@ -55,7 +55,7 @@ public class TestNotesMails {
 		try {
 			UnxiaMail mail = new UnxiaMail();
 			mail.addTo("warm@mwvb.de");
-			mail.setSubject("Unxia Testmail");
+			mail.setSubject("Unxia Testmail 7.1");
 			mail.setBody(new java.util.Date().toString() + "\nDas ist ein Test.");
 			// TODO Cc, BCc Test
 			// TODO attachments Test
