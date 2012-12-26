@@ -20,7 +20,7 @@ public interface UnxiaMailFolder {
 
 	/**
 	 * Reihenfolge: jüngste Emails zuerst
-	 * @param max Ganzzahl ab 1
+	 * @param max Ganzzahl ab 1. Wenn kleiner 0 werden alle Mails geladen.
 	 * @return höchstens max Emails des Ordners
 	 */
 	List<UnxiaMail> getEntries(int max);
