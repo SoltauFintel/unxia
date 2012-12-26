@@ -16,6 +16,7 @@ public class TestNotesCalendar {
 
 	@Test
 	public void listCalendarEntries() {
+		System.out.println("PATH: " + System.getenv("PATH"));
 		Unxia mc = getNotes();
 		try {
 			UnxiaCalendar cal = mc.getCalendar();
