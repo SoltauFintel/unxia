@@ -1,5 +1,12 @@
 package unxia;
 
-public class UnxiaNotesFactory implements UnxiaFactory {
+/**
+ * Unxia Factory für Lotus Notes 8.5
+ */
+public final class UnxiaNotesFactory implements UnxiaFactory {
 
+	@Override
+	public Unxia create() {
+		return new Notes();
+	}
 }
