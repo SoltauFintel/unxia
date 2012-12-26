@@ -1,5 +1,8 @@
 package unxia;
 
+/**
+ * Im Fehlerfall wird i.d.R. diese Exception geworfen.
+ */
 public class UnxiaException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 

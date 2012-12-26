@@ -3,7 +3,20 @@ package unxia;
 import java.util.Map;
 
 /**
- * Mail und Kalender Zugriff
+ * Unxia: universeller Mail und Kalender Zugriff
+ * 
+ * <p>Ziel von Unxia ist es, Mail/Kalender-Programme wie IBM Lotus Notes 8.5 und
+ * Microsoft Outlook universell anzubinden.
+ * 
+ * <p>Aufruffolge: setConfig, login, getCalendar|getMailInboxFolder|createNewMail+send,
+ * logout.
+ * 
+ * <p>Warum heißt dieses Projekt "Unxia"? Unxia ist eine römische Göttin.
+ * 
+ * <p>Copyright 2012 by Marcus Warm
+ * 
+ * @author Marcus Warm
+ * @since  26.12.2012
  */
 public interface Unxia {
 
@@ -14,10 +27,13 @@ public interface Unxia {
 	 */
 	void setConfig(Map<String, String> config);
 	
+	/**
+	 * Am Mail/Kalender-Programm anmelden.
+	 */
 	void login();
 	
 	/**
-	 * Nach erfolgtem login ist logout() im finally Block aufzurufen.
+	 * Nach erfolgreichem login ist logout() im finally Block aufzurufen.
 	 */
 	void logout();
 	
@@ -27,12 +43,18 @@ public interface Unxia {
 	UnxiaCalendar getCalendar();
 	
 	/**
-	 * @return Zugriff auf Posteingang
+	 * @return Zugriff auf eingegangene Emails
 	 */
 	UnxiaMailFolder getMailInboxFolder();
-	
-	UnxiaMail createNewMail();
-	
+
+	/**
+	 * Email versenden
+	 * <p>Das Email wird stets sofort gesendet und danach gespeichert.
+	 * 
+	 * @param mail das zu versendende Mail
+	 */
+	void send(UnxiaMail mail);
+
 	/**
 	 * Email versenden
 	 * <p>Die Implementierung muss send und save nicht zwingend unterstützen.

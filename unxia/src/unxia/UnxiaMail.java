@@ -2,15 +2,33 @@ package unxia;
 
 import java.util.List;
 
+/**
+ * Eingegangenes oder zu versendenes Email
+ * 
+ * <p>Zu setzende Felder bei neuem Email:
+ * subject, body, 1x toList. Optional: mehrfach toList, mehrfach ccList,
+ * mehrfach bccList, mehrfach attachments.</p>
+ */
 public class UnxiaMail {
-	private String subject;
+	private String id = null;
+	private String subject = "";
 	private String from;
-	private java.util.Date date;
-	private String body;
+	private java.util.Date date = null;
+	private String body = "";
 	private List<String> toList;
 	private List<String> ccList;
 	private List<String> bccList;
+	/** Dateinamen der Anlagen */
 	private List<String> attachments;
+	private String principal;
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getId() {
+		return id;
+	}
 	
 	public void addTo(String m) {
 		toList.add(m);
@@ -74,5 +92,13 @@ public class UnxiaMail {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public String getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(String principal) {
+		this.principal = principal;
 	}
 }

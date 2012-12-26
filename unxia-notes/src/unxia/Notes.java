@@ -1,12 +1,17 @@
 package unxia;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 import lotus.domino.Database;
+import lotus.domino.DbDirectory;
 import lotus.domino.Document;
+import lotus.domino.EmbeddedObject;
 import lotus.domino.NotesException;
 import lotus.domino.NotesFactory;
 import lotus.domino.NotesThread;
+import lotus.domino.RichTextItem;
 import lotus.domino.Session;
 
 /**
@@ -29,6 +34,11 @@ public class Notes implements Unxia {
 		this.config = config;
 	}
 
+	/* Wenn kein Notes Client läuft:
+	 * <p>Registration reg = s.createRegistration();
+	 * <p>reg.switchToID("d:\\lotus\\notes\\data\\bku.id", "mypassword");
+	 * <p>(Code noch nicht getestet)
+	 */
 	@Override
 	public void login() {
 		try {
@@ -69,19 +79,54 @@ public class Notes implements Unxia {
 
 	@Override
 	public UnxiaMailFolder getMailInboxFolder() {
-		return new NotesMailFolder("($Inbox)");
+		return new NotesMailFolder(this, "($Inbox)");
 	}
 
 	@Override
-	public void send(UnxiaMail mail, boolean send, boolean save) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public UnxiaMail createNewMail() {
-		return new UnxiaMail();
+	public final void send(UnxiaMail mail) {
+		send(mail, true, true);
 	}
 	
+	/**
+	 * @param send wird nicht unterstützt
+	 */
+	@Override
+	public void send(UnxiaMail mail, boolean send, boolean save) {
+		try {
+			DbDirectory dir = session.getDbDirectory(config.get(CFG_SERVER));
+			Database db = dir.openMailDatabase();
+			Document d = db.createDocument();
+			d.appendItemValue("Form", "Memo");
+			d.appendItemValue("Subject", mail.getSubject());
+			d.appendItemValue("Body", mail.getBody());
+
+			appendList(mail.getToList(), d, "SendTo");
+			appendList(mail.getCcList(), d, "CopyTo");
+			appendList(mail.getBCcList(), d, "BlindCopyTo");
+			
+			int lfd = 0;
+			for (String dn : mail.getAttachments()) {
+				RichTextItem anlage = d.createRichTextItem("attachment" + (++lfd));
+				anlage.embedObject(EmbeddedObject.EMBED_ATTACHMENT, "", dn, null);
+			}
+			
+			d.computeWithForm(true, false);
+			d.setSaveMessageOnSend(save);
+			d.send();
+			mail.setId(d.getUniversalID());
+		} catch (NotesException e) {
+			throw new UnxiaException(e);
+		}
+	}
+	
+	private void appendList(List<String> mails, Document d, String feldname) throws NotesException {
+		Vector<String> v = new Vector<String>();
+		for (String m : mails) {
+			v.add(m);
+		}
+		d.appendItemValue(feldname, v);
+	}
+
 	Document byId(String id) throws NotesException {
 		return database.getDocumentByID(id);
 	}
