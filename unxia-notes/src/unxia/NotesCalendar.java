@@ -94,4 +94,82 @@ public class NotesCalendar implements UnxiaCalendar {
 		}
 		entries.add(entry);
 	}
+
+	@Override
+	public UnxiaCalendarEntry getEntry(String id) {
+		try {
+			Document d = notes.byId(id);
+			if (d == null) return null;
+			UnxiaCalendarEntry e = new UnxiaCalendarEntry();
+			copyToEntry(d, e);
+			return e;
+		} catch (NotesException ex) {
+			throw new UnxiaException(ex);
+		}
+	}
+
+	@Override
+	public void saveNew(UnxiaCalendarEntry e) {
+		try {
+			Document d = notes.database.createDocument();
+			DateTime startDate = notes.session.createDateTime(e.getNewBegin());
+			DateTime endDate = notes.session.createDateTime(e.getNewEnd());
+			d.replaceItemValue("Form", "Appointment");
+			d.replaceItemValue("AppointmentType", e.getType());
+			d.replaceItemValue("Subject", e.getSubject());
+			d.replaceItemValue("$PublicAccess", "1"); // "0" privat
+			d.replaceItemValue("CALENDARDATETIME", startDate);
+			d.replaceItemValue("StartDateTime", startDate);
+			d.replaceItemValue("EndDateTime", endDate);
+			d.replaceItemValue("StartDate", startDate);
+			d.replaceItemValue("MeetingType", "1");
+			d.replaceItemValue("Body", e.getBody());
+			d.replaceItemValue("Location", e.getLocation());
+
+			if (e.getChair() != null && !e.getChair().isEmpty()) {
+				d.replaceItemValue("Chair", e.getChair());
+			}
+
+			/*d.replaceItemValue("$Alarm", "1");
+			d.replaceItemValue("$AlarmDescription", "hello world (alarm)");
+			d.replaceItemValue("$AlarmOptions", "");
+			d.replaceItemValue("$AlarmOffset", "5"); // 5 Minuten vorher
+			d.replaceItemValue("$AlarmSound", "tada");
+			d.replaceItemValue("$AlarmUnit", "M");*/
+			d.computeWithForm(true, false);
+			d.save(true, false, false);
+			e.setId(d.getUniversalID());
+		} catch (NotesException ex) {
+			throw new UnxiaException(ex);
+		}
+	}
+
+	@Override
+	public void save(UnxiaCalendarEntry k) {
+		try {
+			Document d = notes.byId(k.getId());
+			try {
+				// TODO begin, end, chair
+				d.replaceItemValue("Subject", k.getSubject());
+				d.replaceItemValue("Location", k.getLocation()); 
+				d.replaceItemValue("Body", k.getBody());
+				if (!d.save()) {
+					throw new UnxiaException("Fehler beim Speichern des Dokuments. save liefert false.");
+				}
+			} finally {
+				d.recycle();
+			}
+		} catch (NotesException ex) {
+			throw new UnxiaException(ex);
+		}
+	}
+
+	@Override
+	public boolean remove(String id) {
+		try {
+			return notes.byId(id).remove(false);
+		} catch (NotesException e) {
+			throw new UnxiaException(e);
+		}
+	}
 }

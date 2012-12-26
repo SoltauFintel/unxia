@@ -3,6 +3,7 @@ package unxia;
 import java.util.Map;
 
 import lotus.domino.Database;
+import lotus.domino.Document;
 import lotus.domino.NotesException;
 import lotus.domino.NotesFactory;
 import lotus.domino.NotesThread;
@@ -79,5 +80,9 @@ public class Notes implements Unxia {
 	@Override
 	public UnxiaMail createNewMail() {
 		return new UnxiaMail();
+	}
+	
+	Document byId(String id) throws NotesException {
+		return database.getDocumentByID(id);
 	}
 }

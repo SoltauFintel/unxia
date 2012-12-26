@@ -15,4 +15,30 @@ public interface UnxiaCalendar {
 	 * @return Kalendereinträge
 	 */
 	List<UnxiaCalendarEntry> getEntries(String vonDatum, String bisDatum);
+	
+	/**
+	 * Lädt Kalendereintrag anhand ID.
+	 * @param id
+	 * @return null wenn nicht gefunden
+	 */
+	UnxiaCalendarEntry getEntry(String id);
+	
+	/**
+	 * Speichert neuen Kalendereintrag.
+	 * @param entry
+	 */
+	void saveNew(UnxiaCalendarEntry entry);
+
+	/**
+	 * Speichert geladenen Kalendereintrag.
+	 * @param entry
+	 */
+	void save(UnxiaCalendarEntry entry);
+	
+	/**
+	 * Kalendereintrag anhand id löschen
+	 * @param id
+	 * @return Erfolg
+	 */
+	boolean remove(String id);
 }
