@@ -15,7 +15,7 @@ public class NotesMailFolder implements UnxiaMailFolder {
 	
 	NotesMailFolder(Notes notes, String foldername) {
 		try {
-			folder = notes.database.getView(foldername);
+			folder = notes.getView(foldername);
 		} catch (NotesException ex) {
 			throw new UnxiaException(ex);
 		}

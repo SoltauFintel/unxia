@@ -2,6 +2,9 @@ package unxia;
 
 import java.util.List;
 
+/**
+ * Zugriff auf Kalender
+ */
 public interface UnxiaCalendar {
 
 	/**

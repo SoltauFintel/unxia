@@ -1,9 +1,7 @@
 package unxia;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import junit.framework.Assert;
 
@@ -20,14 +18,7 @@ import org.junit.Test;
 public class TestNotesCalendar {
 
 	private Unxia getNotes() {
-		UnxiaFactory factory = new UnxiaNotesFactory(); // Notes spezifisch
-		Map<String, String> config = new HashMap<String, String>();
-		config.put(Notes.CFG_SERVER, "GI-KEV-DOM01/GENEVA-ID"); // Notes spezifisch
-		config.put(Notes.CFG_MAILFILE, "mail\\kev\\mwarm.nsf"); // Notes spezifisch
-		Unxia notes = factory.create();
-		notes.setConfig(config);
-		notes.login();
-		return notes;
+		return new Notes("GI-KEV-DOM01/GENEVA-ID", "mail\\kev\\mwarm.nsf");
 	}
 
 	@Test

@@ -3,7 +3,6 @@ package unxia;
 import java.util.ArrayList;
 import java.util.List;
 
-import lotus.domino.DateRange;
 import lotus.domino.DateTime;
 import lotus.domino.Document;
 import lotus.domino.NotesException;
@@ -18,7 +17,7 @@ public class NotesCalendar implements UnxiaCalendar {
 	NotesCalendar(Notes notes) {
 		this.notes = notes;
 		try {
-			calendar = notes.database.getView("($Calendar)");
+			calendar = notes.getView("($Calendar)");
 		} catch (NotesException e) {
 			throw new UnxiaException(e);
 		}
@@ -41,7 +40,7 @@ public class NotesCalendar implements UnxiaCalendar {
 		try {
 			List<UnxiaCalendarEntry> ret = new ArrayList<UnxiaCalendarEntry>();
 			ViewEntryCollection entries = calendar.getAllEntriesByKey(
-					getDateRange(vonDatum, bisDatum), true);
+					notes.createDateRange(vonDatum, bisDatum), true);
 			ViewEntry entry = entries.getFirstEntry();
 			while (entry != null) {
 				Document d = entry.getDocument();
@@ -59,16 +58,6 @@ public class NotesCalendar implements UnxiaCalendar {
 		}
 	}
 	
-	private DateRange getDateRange(String vonDatum, String bisDatum) {
-		try {
-			DateTime von = notes.session.createDateTime(vonDatum);
-			DateTime bis = notes.session.createDateTime(bisDatum);
-			return notes.session.createDateRange(von, bis);
-		} catch (NotesException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
 	private void copyToEntry(Document d, UnxiaCalendarEntry e) throws NotesException {
 		e.setId(d.getUniversalID());
 		e.setBegin(datumuhrzeit(d, "StartDateTime"));
@@ -118,9 +107,9 @@ public class NotesCalendar implements UnxiaCalendar {
 	@Override
 	public void saveNew(UnxiaCalendarEntry e) {
 		try {
-			Document d = notes.database.createDocument();
-			DateTime startDate = notes.session.createDateTime(e.getNewBegin());
-			DateTime endDate = notes.session.createDateTime(e.getNewEnd());
+			Document d = notes.createDocument();
+			DateTime startDate = notes.createDateTime(e.getNewBegin());
+			DateTime endDate = notes.createDateTime(e.getNewEnd());
 			d.replaceItemValue("Form", "Appointment");
 			d.replaceItemValue("AppointmentType", "" + e.getType());
 			d.replaceItemValue("Subject", e.getSubject());

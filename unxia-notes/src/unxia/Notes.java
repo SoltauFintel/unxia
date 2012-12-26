@@ -1,10 +1,13 @@
 package unxia;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 import lotus.domino.Database;
+import lotus.domino.DateRange;
+import lotus.domino.DateTime;
 import lotus.domino.DbDirectory;
 import lotus.domino.Document;
 import lotus.domino.EmbeddedObject;
@@ -13,6 +16,7 @@ import lotus.domino.NotesFactory;
 import lotus.domino.NotesThread;
 import lotus.domino.RichTextItem;
 import lotus.domino.Session;
+import lotus.domino.View;
 
 /**
  * IBM Lotus Notes 8.5 Zugriff
@@ -23,9 +27,23 @@ public class Notes implements Unxia {
 	public static String CFG_SERVER = "server";
 	public static String CFG_MAILFILE = "mailfile";
 	private Map<String, String> config;
-	Session session;
-	Database database;
+	private Session session;
+	private Database database;
 
+	public Notes() {
+	}
+
+	/**
+	 * @param server z.B. "GI-KEV-DOM01/GENEVA-ID"
+	 * @param mailfile relativer Pfad zur .nsf Datei
+	 */
+	public Notes(String server, String mailfile) {
+		config = new HashMap<String, String>();
+		config.put(CFG_SERVER, server);
+		config.put(CFG_MAILFILE, mailfile);
+		login();
+	}
+	
 	/**
 	 * Es müssen die Parameter CFG_SERVER und CFG_MAILFILE angegeben werden.
 	 */
@@ -33,7 +51,7 @@ public class Notes implements Unxia {
 	public void setConfig(Map<String, String> config) {
 		this.config = config;
 	}
-
+	
 	/* Wenn kein Notes Client läuft:
 	 * <p>Registration reg = s.createRegistration();
 	 * <p>reg.switchToID("d:\\lotus\\notes\\data\\bku.id", "mypassword");
@@ -129,5 +147,34 @@ public class Notes implements Unxia {
 
 	Document byId(String id) throws NotesException {
 		return database.getDocumentByUNID(id);
+	}
+	
+	/**
+	 * @param datum Datum und Uhrzeit
+	 * @return Notes DateTime
+	 * @throws NotesException
+	 */
+	DateTime createDateTime(java.util.Date datum) throws NotesException {
+		return session.createDateTime(datum);
+	}
+
+	/**
+	 * @param vonDatum Format TT.MM.JJJJ
+	 * @param bisDatum Format TT.MM.JJJJ
+	 * @return Notes DateRange
+	 * @throws NotesException
+	 */
+	DateRange createDateRange(String vonDatum, String bisDatum) throws NotesException {
+		DateTime von = session.createDateTime(vonDatum);
+		DateTime bis = session.createDateTime(bisDatum);
+		return session.createDateRange(von, bis);
+	}
+	
+	Document createDocument() throws NotesException {
+		return database.createDocument();
+	}
+	
+	View getView(String name) throws NotesException {
+		return database.getView(name);
 	}
 }

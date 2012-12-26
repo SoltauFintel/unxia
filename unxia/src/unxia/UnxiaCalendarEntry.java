@@ -1,7 +1,7 @@
 package unxia;
 
 /**
- * Kalendereintrag
+ * Geladener oder neuer Kalendereintrag
  */
 public class UnxiaCalendarEntry {
 	private String id;
