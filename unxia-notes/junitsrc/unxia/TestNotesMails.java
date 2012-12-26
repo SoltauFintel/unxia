@@ -32,7 +32,7 @@ public class TestNotesMails {
 		System.out.println("PATH: " + System.getenv("PATH"));
 		Unxia mc = getNotes();
 		try {
-			UnxiaMailFolder inbox = mc.getMailInboxFolder();
+			UnxiaMailFolder inbox = mc.getInbox();
 			try {
 				List<UnxiaMail> mails = inbox.getEntries(40);
 				for (UnxiaMail mail : mails) {

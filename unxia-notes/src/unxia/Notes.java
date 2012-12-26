@@ -96,7 +96,7 @@ public class Notes implements Unxia {
 	}
 
 	@Override
-	public UnxiaMailFolder getMailInboxFolder() {
+	public UnxiaMailFolder getInbox() {
 		return new NotesMailFolder(this, "($Inbox)");
 	}
 

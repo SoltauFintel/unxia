@@ -45,7 +45,7 @@ public interface Unxia {
 	/**
 	 * @return Zugriff auf eingegangene Emails
 	 */
-	UnxiaMailFolder getMailInboxFolder();
+	UnxiaMailFolder getInbox();
 
 	/**
 	 * Email versenden
