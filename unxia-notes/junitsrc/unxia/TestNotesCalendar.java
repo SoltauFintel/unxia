@@ -62,13 +62,12 @@ public class TestNotesCalendar {
 		}
 	}
 
-	@SuppressWarnings("deprecation") // TODO Datumsroutinen implementieren
 	private void addCalendarEntry(UnxiaCalendar cal) {
 		UnxiaCalendarEntry k = new UnxiaCalendarEntry();
 		k.setSubject("Tomate");
 		k.setBody("Zeile 1\nZeile 2");
-		k.setNewBegin(new java.util.Date(2011-1900, Calendar.DECEMBER, 25,   8, 10, 0));
-		k.setNewEnd(  new java.util.Date(2011-1900, Calendar.DECEMBER, 25,   8, 40, 0));
+		k.setNewBegin(getDate(2011, Calendar.DECEMBER, 25,   8, 10));
+		k.setNewEnd(  getDate(2011, Calendar.DECEMBER, 25,   8, 40));
 		k.setType(3);
 		k.setLocation("zuhause");
 		k.setChair("Marcus Warm/GENEVA-ID");
@@ -78,6 +77,13 @@ public class TestNotesCalendar {
 				+ " / " + k.getNewBegin().toString() + " / " + k.getTypetext()
 				+ " / ID: " + k.getId());
 		Assert.assertNotNull(k.getId());
+	}
+	
+	private java.util.Date getDate(int year, int month, int day,
+			int hour, int minutes) {
+		Calendar c = Calendar.getInstance();
+		c.set(year, month, day, hour, minutes, 0);
+		return c.getTime();
 	}
 	
 	@Test
