@@ -3,9 +3,7 @@
  */
 package unxia;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
@@ -19,21 +17,14 @@ import org.junit.Test;
  */
 public class TestNotesMails {
 
-	private Unxia getNotes() {
-		UnxiaFactory factory = new UnxiaNotesFactory(); // Notes spezifisch
-		Map<String, String> config = new HashMap<String, String>();
-		config.put(Notes.CFG_SERVER, "GI-KEV-DOM01/GENEVA-ID"); // Notes spezifisch
-		config.put(Notes.CFG_MAILFILE, "mail\\kev\\mwarm.nsf"); // Notes spezifisch
-		Unxia notes = factory.create();
-		notes.setConfig(config);
-		notes.login();
-		return notes;
+	private Unxia getGroupware() {
+		return new Notes("GI-KEV-DOM01/GENEVA-ID", "mail\\kev\\mwarm.nsf");
 	}
 
 	@Test
 	public void inbox() {
 		System.out.println("PATH: " + System.getenv("PATH"));
-		Unxia mc = getNotes();
+		Unxia mc = getGroupware();
 		try {
 			UnxiaMailFolder inbox = mc.getInbox();
 			try {
@@ -54,7 +45,7 @@ public class TestNotesMails {
 	@Test
 	public void sendMail() {
 		System.out.println("PATH: " + System.getenv("PATH"));
-		Unxia mc = getNotes();
+		Unxia mc = getGroupware();
 		try {
 			UnxiaMail mail = new UnxiaMail();
 			mail.addTo("warm@mwvb.de");

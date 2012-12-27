@@ -20,14 +20,14 @@ import org.junit.Test;
  */
 public class TestNotesCalendar {
 
-	private Unxia getNotes() {
+	private Unxia getGroupware() {
 		return new Notes("GI-KEV-DOM01/GENEVA-ID", "mail\\kev\\mwarm.nsf");
 	}
 
 	@Test
 	public void listCalendarEntries() {
 		System.out.println("PATH: " + System.getenv("PATH"));
-		Unxia mc = getNotes();
+		Unxia mc = getGroupware();
 		try {
 			UnxiaCalendar cal = mc.getCalendar();
 			try {
@@ -52,7 +52,7 @@ public class TestNotesCalendar {
 	@Test
 	public void addCalendarEntry() {
 		System.out.println("PATH: " + System.getenv("PATH"));
-		Unxia mc = getNotes();
+		Unxia mc = getGroupware();
 		try {
 			UnxiaCalendar cal = mc.getCalendar();
 			try {
@@ -92,7 +92,7 @@ public class TestNotesCalendar {
 	@Test
 	public void updateCalendarEntry() {
 		System.out.println("PATH: " + System.getenv("PATH"));
-		Unxia mc = getNotes();
+		Unxia mc = getGroupware();
 		try {
 			UnxiaCalendar cal = mc.getCalendar();
 			try {
@@ -127,7 +127,7 @@ public class TestNotesCalendar {
 	@Test
 	public void removeCalendarEntry() {
 		System.out.println("PATH: " + System.getenv("PATH"));
-		Unxia mc = getNotes();
+		Unxia mc = getGroupware();
 		try {
 			UnxiaCalendar cal = mc.getCalendar();
 			try {
