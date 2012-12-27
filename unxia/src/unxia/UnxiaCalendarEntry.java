@@ -10,7 +10,7 @@ public class UnxiaCalendarEntry {
 	private String id;
 	/** Text */
 	private String body;
-	/** Leitung der Besprechung */
+	/** Leiter der Besprechung */
 	private String chair;
 	/** Start Datum Uhrzeit */
 	private String begin;
