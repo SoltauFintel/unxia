@@ -3,11 +3,14 @@
  */
 package unxia;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class UnxiaFileGroupware implements Unxia {
 	public static String CFG_MAILFILE = "mailfile";
 	private String mailfile;
+	private List<Map<String, String>> entries;
 	
 	public UnxiaFileGroupware() {
 	}
@@ -24,7 +27,12 @@ public class UnxiaFileGroupware implements Unxia {
 
 	@Override
 	public void login() {
-		System.out.println("[login] mailfile = " + mailfile);
+		try {
+			entries = UnxiaFileReader.getEntries(mailfile);
+		} catch (IOException e) {
+			throw new UnxiaException(e);
+		}
+		System.out.println(mailfile + "   (" + entries.size() + " entries)");
 	}
 
 	@Override
@@ -38,7 +46,7 @@ public class UnxiaFileGroupware implements Unxia {
 
 	@Override
 	public UnxiaMailFolder getInbox() {
-		throw new UnsupportedOperationException();
+		return new UnxiaFileMailFolder(entries);
 	}
 
 	@Override

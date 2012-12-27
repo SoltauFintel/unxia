@@ -15,7 +15,7 @@ import org.junit.Test;
 public class TestNotesMails {
 
 	private Unxia getNotes() {
-		return new UnxiaFileGroupware("C:\\dat\\unxia\\mails.txt");
+		return new UnxiaFileGroupware("files/mailfile.txt");
 	}
 
 	@Test
@@ -28,7 +28,8 @@ public class TestNotesMails {
 				for (UnxiaMail mail : mails) {
 					System.out.println("- " + mail.getDate().toString() // z.B. "Tue Dec 25 16:36:22 CET 2012"
 							+ " | " + mail.getFrom() // z.B. "CN=Max Muster/O=Firma"
-							+ " | \"" + mail.getSubject() + "\"");
+							+ " | \"" + mail.getSubject() + "\""
+							+ " | TO: " + mail.getToList().toString().replace("[", "").replace("]", ""));
 				}
 			} finally {
 				inbox.cleanup();
