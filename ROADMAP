@@ -1,12 +1,12 @@
-- Datum und Uhrzeit eines Kalendereintrags ändern
+- Datum und Uhrzeit eines Kalendereintrags aendern
 - TODO Hinweise...
 - Notes Zugriff ohne laufende Notes Anwendung
 - Dummy Implementierung
 - evtl. Notes.jar Ersatz, damit man das ohne Notes testen kann
-- Real World Verwendung (Ich befürchte da Probleme mit der JRE.)
+- Real World Verwendung (Ich befuerchte da Probleme mit der JRE.)
 
 EVENTUELL
-- Thunderbird Unterstützung (plus zugehöriges Kalenderprogramm)
+- Thunderbird Unterstuetzung (plus zugehoeriges Kalenderprogramm)
 
-IRGENDWANN SPÄTER
-- Microsoft Outlook Unterstützung
+IRGENDWANN SPAETER
+- Microsoft Outlook Unterstuetzung
