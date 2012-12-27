@@ -1,3 +1,6 @@
+/*
+ * Copyright 2012 by Marcus Warm
+ */
 package unxia;
 
 import java.util.List;

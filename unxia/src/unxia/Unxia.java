@@ -1,3 +1,6 @@
+/*
+ * Copyright 2012 by Marcus Warm
+ */
 package unxia;
 
 import java.util.Map;
@@ -5,15 +8,13 @@ import java.util.Map;
 /**
  * Unxia: universeller Mail und Kalender Zugriff
  * 
- * <p>Ziel von Unxia ist es, Mail/Kalender-Programme wie IBM Lotus Notes 8.5 und
- * Microsoft Outlook universell anzubinden.
+ * <p>Ziel von Unxia ist es, Mail/Kalender-Programme (Groupware)
+ * wie IBM Lotus Notes 8.5 und Microsoft Outlook universell anzubinden.
  * 
  * <p>Aufruffolge: setConfig, login, getCalendar|getMailInboxFolder|createNewMail+send,
  * logout.
  * 
  * <p>Warum heißt dieses Projekt "Unxia"? Unxia ist eine römische Göttin.
- * 
- * <p>Copyright 2012 by Marcus Warm
  * 
  * @author Marcus Warm
  * @since  26.12.2012
