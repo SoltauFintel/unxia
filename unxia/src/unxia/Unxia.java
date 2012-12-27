@@ -14,6 +14,11 @@ import java.util.Map;
  * <p>Aufruffolge: setConfig, login, getCalendar|getMailInboxFolder|createNewMail+send,
  * logout.
  * 
+ * <p>Eine Implementierung muss nicht alle Methoden
+ * (getCalendar|getMailInboxFolder|createNewMail+send) implementieren. Wenn
+ * eine Methode nicht implementiert wurde, ist UnsupportedOperationException zu
+ * werfen.
+ * 
  * <p>Warum heißt dieses Projekt "Unxia"? Unxia ist eine römische Göttin.
  * 
  * @author Marcus Warm
