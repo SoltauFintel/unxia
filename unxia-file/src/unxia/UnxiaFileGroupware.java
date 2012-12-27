@@ -7,15 +7,24 @@ import java.util.Map;
 
 public class UnxiaFileGroupware implements Unxia {
 	public static String CFG_MAILFILE = "mailfile";
-//	private Map<String, String> config;
+	private String mailfile;
+	
+	public UnxiaFileGroupware() {
+	}
+
+	public UnxiaFileGroupware(String mailfile) {
+		this.mailfile = mailfile;
+		login();
+	}
 	
 	@Override
 	public void setConfig(Map<String, String> config) {
-//		this.config = config;
+		mailfile = config.get(CFG_MAILFILE);
 	}
 
 	@Override
 	public void login() {
+		System.out.println("[login] mailfile = " + mailfile);
 	}
 
 	@Override
