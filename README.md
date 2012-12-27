@@ -6,13 +6,13 @@ Email und Kalender Zugriff
 Features:
 - Email senden
 - Inbox auslesen
-- Kalendereinträge für einen Datumszeitraum auslesen
+- Kalendereintraege fuer einen Datumszeitraum auslesen
 - Kalendereintrag neu erstellen
-- Kalendereintrag ändern
-- Kalendereintrag löschen
+- Kalendereintrag aendern
+- Kalendereintrag loeschen
 
 bisher implementiert:
-- IBM Lotus Notes 8.5 Unterstützung
+- IBM Lotus Notes 8.5 Unterstuetzung
 
 geplant:
-- Microsoft Outlook Unterstützung
+- Microsoft Outlook Unterstuetzung
