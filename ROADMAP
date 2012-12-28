@@ -1,9 +1,9 @@
+- Dummy Implementierung (unxia-file)
+  => IN ARBEIT
 - Datum und Uhrzeit eines Kalendereintrags aendern
 - TODO Hinweise...
 - Notes Zugriff ohne laufende Notes Anwendung
-- Dummy Implementierung
-- evtl. Notes.jar Ersatz, damit man das ohne Notes testen kann
-- Real World Verwendung (Ich befuerchte da Probleme mit der JRE.)
+- Real World Verwendung (JRE 32 bit)
 
 EVENTUELL
 - Thunderbird Unterstuetzung (plus zugehoeriges Kalenderprogramm)
