@@ -12,7 +12,7 @@ public class UnxiaCalendarEntry {
 	private String body;
 	/** Leiter der Besprechung */
 	private String chair;
-	/** Start Datum Uhrzeit */
+	/** Start Datum Uhrzeit, z.B. "13.12.2011 04:00:00 CET" */
 	private String begin;
 	/** Ende Datum Uhrzeit */
 	private String end;
