@@ -17,7 +17,7 @@ import org.junit.Test;
 public class TestUnxiaFileCalendar {
 
 	private Unxia getGroupware() {
-		return new UnxiaFileGroupware("C:\\dat\\unxia\\mails.txt");
+		return new UnxiaFileGroupware("files/mailfile.txt");
 	}
 
 	@Test

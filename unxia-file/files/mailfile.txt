@@ -26,3 +26,17 @@ Zeile 3
 ::CALENDAR::
 	id: 1001
 	subject: Kalendereintrag
+	body: blabla
+	begin: 29.12.2012 19:30
+	end:   29.12.2012 23:30
+	from: ersteller@mwvb.de
+	location: Nordwall 1		
+	type: 0
+::CALENDAR::
+	id: 1002
+	subject: Kino
+	begin: 03.01.2013 19:30
+	end:   03.01.2013 22:00
+	from: ersteller@mwvb.de
+	location: Gelderstr.		
+	type: 0

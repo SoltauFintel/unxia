@@ -6,6 +6,7 @@ package unxia;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class UnxiaFileGroupware implements Unxia {
 	public static String CFG_MAILFILE = "mailfile";
@@ -41,7 +42,7 @@ public class UnxiaFileGroupware implements Unxia {
 
 	@Override
 	public UnxiaCalendar getCalendar() {
-		throw new UnsupportedOperationException();
+		return new UnxiaFileCalendar(entries);
 	}
 
 	@Override
@@ -56,6 +57,10 @@ public class UnxiaFileGroupware implements Unxia {
 
 	@Override
 	public void send(UnxiaMail mail, boolean send, boolean save) {
-		throw new UnsupportedOperationException();
+		mail.setId(genId());
+	}
+	
+	public static String genId() {
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 }

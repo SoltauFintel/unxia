@@ -28,6 +28,7 @@ class UnxiaFileReader {
 						longtextMode = false;
 						doc.put(lt_name, lt_value);
 						lt_name = null;
+						lt_value = "";
 					} else {
 						lt_value += zeile + CRLF;
 					}
