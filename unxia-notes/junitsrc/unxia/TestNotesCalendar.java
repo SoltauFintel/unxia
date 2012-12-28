@@ -131,7 +131,7 @@ public class TestNotesCalendar {
 		try {
 			UnxiaCalendar cal = mc.getCalendar();
 			try {
-				cal.remove("TODO");
+				cal.remove("TO DO");
 			} finally {
 				cal.cleanup();
 			}

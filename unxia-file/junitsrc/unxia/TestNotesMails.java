@@ -47,7 +47,6 @@ public class TestNotesMails {
 			mail.addTo("warm@mwvb.de");
 			mail.setSubject("Unxia Testmail 8.0");
 			mail.setBody(new java.util.Date().toString() + "\nDas ist ein Test.");
-			// TODO Cc, BCc Test
 			// TODO attachments Test
 			mc.send(mail);
 			System.out.println("Mail versendet | \"" + mail.getSubject() + "\" | " + mail.getId());
