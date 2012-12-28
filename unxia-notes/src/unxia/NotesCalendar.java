@@ -148,10 +148,22 @@ public class NotesCalendar implements UnxiaCalendar {
 		try {
 			Document d = notes.byId(k.getId());
 			try {
-				// TODO begin, end, chair
 				d.replaceItemValue("Subject", k.getSubject());
 				d.replaceItemValue("Location", k.getLocation()); 
 				d.replaceItemValue("Body", k.getBody());
+				if (k.getNewBegin() != null) {
+					DateTime startDate = notes.createDateTime(k.getNewBegin());
+					d.replaceItemValue("CALENDARDATETIME", startDate);
+					d.replaceItemValue("StartDateTime", startDate);
+					d.replaceItemValue("StartDate", startDate);
+				}
+				if (k.getNewEnd() != null) {
+					DateTime endDate = notes.createDateTime(k.getNewEnd());
+					d.replaceItemValue("EndDateTime", endDate);
+				}
+				if (k.getChair() != null) {
+					d.replaceItemValue("Chair", k.getChair());
+				}
 				if (!d.save()) {
 					throw new UnxiaException("Fehler beim Speichern des Dokuments. save liefert false.");
 				}
