@@ -29,6 +29,27 @@ public class UnxiaDateService {
 	}
 	
 	/**
+	 * @param pDatum Datum als String im Format "TT.MM.JJJJ HH:MM:SS CET"
+	 * @return Datum Uhrzeit als java.util.Date
+	 */
+	public static java.util.Date toDateTime(String d) {
+		if (!d.endsWith(" CET") || d.length() != "TT.MM.JJJJ HH:MM:SS CET".length()) {
+			throw new RuntimeException("Datum muss Format \"TT.MM.JJJJ HH:MM:SS CET\" haben!");
+		}
+		d = d.replace(" CET", "").replace(":", ".").replace(" ", ".");
+		String w[] = d.split(".");
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, Integer.parseInt(w[2]));
+		c.set(Calendar.MONTH, Integer.parseInt(w[1]));
+		c.set(Calendar.DAY_OF_MONTH, Integer.parseInt(w[0]));
+		c.set(Calendar.HOUR_OF_DAY, Integer.parseInt(w[3]));
+		c.set(Calendar.MINUTE, Integer.parseInt(w[4]));
+		c.set(Calendar.SECOND, Integer.parseInt(w[5]));
+System.out.println(c.getTime().getClass().getName());
+		return c.getTime();
+	}
+	
+	/**
 	 * @param pDatum Datum, Typ: java.sql.Date oder java.util.Date
 	 * @return Datum als String im Format "TT.MM.JJJJ"
 	 */
