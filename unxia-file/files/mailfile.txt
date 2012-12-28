@@ -2,8 +2,8 @@
 	id: 1001
 	subject: Kalendereintrag
 	body: blabla
-	begin: 29.12.2012 19:30
-	end:   29.12.2012 23:30
+	begin: 29.12.2012 19:30:00 CET
+	end:   29.12.2012 23:30:00 CET
 	from: ersteller@mwvb.de
 	location: Nordwall 1		
 	type: 0
@@ -12,7 +12,7 @@
 	folder: inbox
 	subject: Willkommen bei unxia-file!
 	from: dummy@mwvb.de
-	date: 27.12.2012 22:59:00
+	date: 27.12.2012 22:59:00 CET
 	to: dummy_to1@mwvb.de;dummy_to2@mwvb.de
 	cc: dummy_cc@mwvb.de
 	longtext>body: [ENDE]
@@ -25,7 +25,7 @@ Zeile 2
 	folder: inbox
 	subject: Ein weiteres Testmail
 	from: irgendwas@mwvb.de
-	date: 27.12.2012 22:16:00
+	date: 27.12.2012 22:16:00 CET
 	to: irgendjemand@mwvb.de
 	longtext>body: [ENDE]
 Dieses Email wurde früher versendet.
@@ -35,8 +35,15 @@ Zeile 3
 ::CALENDAR::
 	id: 1002
 	subject: Kino
-	begin: 03.01.2013 19:30
-	end:   03.01.2013 22:00
+	begin: 03.01.2013 19:20:00 CET
+	end:   03.01.2013 22:00:00 CET
 	from: ersteller@mwvb.de
 	location: Gelderstr.		
 	type: 0
+::MAIL::
+	id: 0003
+	folder: sent
+	subject: Gesendetes Testmail
+	from: ich@mwvb.de
+	date: 15.04.2012 22:16:33 CET
+	to: irgendjemand@mwvb.de

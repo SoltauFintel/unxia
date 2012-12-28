@@ -47,7 +47,7 @@ public class UnxiaFileGroupware implements Unxia {
 
 	@Override
 	public UnxiaMailFolder getInbox() {
-		return new UnxiaFileMailFolder(entries);
+		return new UnxiaFileMailFolder("inbox", entries);
 	}
 
 	@Override

@@ -7,10 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Zugriff auf unxia-file Mailordner
+ */
 public class UnxiaFileMailFolder implements UnxiaMailFolder {
+	private final String folder;
 	private final List<Map<String, String>> entries;
 	
-	UnxiaFileMailFolder(List<Map<String, String>> entries) {
+	UnxiaFileMailFolder(String folder, List<Map<String, String>> entries) {
+		this.folder = folder;
 		this.entries = entries;
 	}
 	
@@ -18,11 +23,11 @@ public class UnxiaFileMailFolder implements UnxiaMailFolder {
 	public List<UnxiaMail> getEntries(int max) {
 		List<UnxiaMail> ret = new ArrayList<UnxiaMail>();
 		for (Map<String, String> doc : entries) {
-			if ("MAIL".equals(doc.get(UnxiaFileReader.TYPE))) {
-				if (ret.size() == max) break;
+			if ("MAIL".equals(doc.get(UnxiaFileReader.TYPE)) && doc.get("folder").equals(folder)) {
 				UnxiaMail mail = new UnxiaMail();
 				set(doc, mail);
 				ret.add(mail);
+				if (ret.size() == max) break;
 			}
 		}
 		return ret;
@@ -32,7 +37,7 @@ public class UnxiaFileMailFolder implements UnxiaMailFolder {
 		m.setId(d.get("id"));
 		m.setFrom(d.get("from"));
 		m.setSubject(d.get("subject"));
-		m.setDate(new java.util.Date()); // TODO
+		m.setDate(UnxiaDateService.toDateTime(d.get("date")));
 		m.setPrincipal(d.get("principal"));
 		m.setBody(d.get("body"));
 		for (String ea : d.get("to").split(";")) {

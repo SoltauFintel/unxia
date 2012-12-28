@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Zugriff auf unxia-file Kalender
+ */
 public class UnxiaFileCalendar implements UnxiaCalendar {
 	public static final String TYPE = "CALENDAR";
 	private final List<Map<String, String>> entries;
@@ -32,11 +35,15 @@ public class UnxiaFileCalendar implements UnxiaCalendar {
 
 	@Override
 	public List<UnxiaCalendarEntry> getEntries(String vonDatum, String bisDatum) {
-		// TODO vonDatum und bisDatum berücksichtigen
+		java.sql.Date von = UnxiaDateService.toDate(vonDatum);
+		java.sql.Date bis = UnxiaDateService.toDate(bisDatum);
 		List<UnxiaCalendarEntry> ret = new ArrayList<UnxiaCalendarEntry>();
 		for (Map<String, String> doc : entries) {
 			if (TYPE.equals(doc.get(UnxiaFileReader.TYPE))) {
-				ret.add(create(doc));
+				java.util.Date d = UnxiaDateService.toDateTime(doc.get("begin"));
+				if (!d.before(von) && !d.after(bis)) {
+					ret.add(create(doc));
+				}
 			}
 		}
 		return ret;
