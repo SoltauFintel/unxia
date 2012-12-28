@@ -1,3 +1,6 @@
+/*
+ * Copyright 2012 by Marcus Warm
+ */
 package unxia;
 
 import java.util.ArrayList;
@@ -11,6 +14,13 @@ public class UnxiaFileCalendar implements UnxiaCalendar {
 	
 	UnxiaFileCalendar(List<Map<String, String>> entries) {
 		this.entries = entries;
+		int n = 0;
+		for (Map<String, String> doc : this.entries) {
+			if (TYPE.equals(doc.get(UnxiaFileReader.TYPE))) {
+				n++;
+			}
+		}
+		System.out.println(n + " Kalendereinträge");
 	}
 	
 	@Override
@@ -22,6 +32,7 @@ public class UnxiaFileCalendar implements UnxiaCalendar {
 
 	@Override
 	public List<UnxiaCalendarEntry> getEntries(String vonDatum, String bisDatum) {
+		// TODO vonDatum und bisDatum berücksichtigen
 		List<UnxiaCalendarEntry> ret = new ArrayList<UnxiaCalendarEntry>();
 		for (Map<String, String> doc : entries) {
 			if (TYPE.equals(doc.get(UnxiaFileReader.TYPE))) {

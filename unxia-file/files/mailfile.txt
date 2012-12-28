@@ -1,3 +1,12 @@
+::CALENDAR::
+	id: 1001
+	subject: Kalendereintrag
+	body: blabla
+	begin: 29.12.2012 19:30
+	end:   29.12.2012 23:30
+	from: ersteller@mwvb.de
+	location: Nordwall 1		
+	type: 0
 ::MAIL::
 	id: 0001
 	folder: inbox
@@ -23,15 +32,6 @@ Dieses Email wurde früher versendet.
 
 Zeile 3
 [ENDE]
-::CALENDAR::
-	id: 1001
-	subject: Kalendereintrag
-	body: blabla
-	begin: 29.12.2012 19:30
-	end:   29.12.2012 23:30
-	from: ersteller@mwvb.de
-	location: Nordwall 1		
-	type: 0
 ::CALENDAR::
 	id: 1002
 	subject: Kino
