@@ -13,7 +13,7 @@
 	subject: Willkommen bei unxia-file!
 	from: dummy@mwvb.de
 	date: 27.12.2012 22:59:00
-	to: warm@mwvb.de;dummy_to2@mwvb.de
+	to: dummy_to1@mwvb.de;dummy_to2@mwvb.de
 	cc: dummy_cc@mwvb.de
 	longtext>body: [ENDE]
 Dies ist der Mailtext.
@@ -26,7 +26,7 @@ Zeile 2
 	subject: Ein weiteres Testmail
 	from: irgendwas@mwvb.de
 	date: 27.12.2012 22:16:00
-	to: warm@mwvb.de
+	to: irgendjemand@mwvb.de
 	longtext>body: [ENDE]
 Dieses Email wurde früher versendet.
 

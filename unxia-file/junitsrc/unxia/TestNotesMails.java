@@ -44,7 +44,7 @@ public class TestNotesMails {
 		Unxia mc = getNotes();
 		try {
 			UnxiaMail mail = new UnxiaMail();
-			mail.addTo("warm@mwvb.de");
+			mail.addTo("@mwvb.de"); // TODO Emailadresse eintragen
 			mail.setSubject("Unxia Testmail 8.0");
 			mail.setBody(new java.util.Date().toString() + "\nDas ist ein Test.");
 			// TODO attachments Test
