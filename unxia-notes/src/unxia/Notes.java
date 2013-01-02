@@ -17,6 +17,7 @@ import lotus.domino.EmbeddedObject;
 import lotus.domino.NotesException;
 import lotus.domino.NotesFactory;
 import lotus.domino.NotesThread;
+import lotus.domino.Registration;
 import lotus.domino.RichTextItem;
 import lotus.domino.Session;
 import lotus.domino.View;
@@ -65,6 +66,12 @@ public class Notes implements Unxia {
 		try {
 			NotesThread.sinitThread();
 			session = NotesFactory.createSession();
+			Registration reg = session.createRegistration();
+			// Der Pfad kann in Notes unter Vorgaben nachgeschlagen werden. In dem Ordner dann nach .id Dateien suchen.
+			String m =
+			  reg.switchToID("C:\\Users\\MarcusW.COMNET\\AppData\\Local\\Lotus\\Notes\\Data\\user.id", "Passwort"); // TODO Passwort eintragen
+			// TODO Wie kann man verhindern, dass bei falschem Passwort die DOS Box aufgeht und das Passwort abgefragt wird. Mir wär lieber, dass ein Fehler geworfen wird.
+			System.out.println("m: "+m); // müsste User Name sein
 			database = session.getDatabase(config.get(CFG_SERVER),
 					config.get(CFG_MAILFILE));
 			if (!database.isOpen()) {
