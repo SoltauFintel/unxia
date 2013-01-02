@@ -37,7 +37,7 @@ public class UnxiaDateService {
 			throw new RuntimeException("Datum muss Format \"TT.MM.JJJJ HH:MM:SS CET\" haben!");
 		}
 		d = d.replace(" CET", "").replace(":", ".").replace(" ", ".");
-		String w[] = d.split(".");
+		String w[] = d.split("\\.");
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, Integer.parseInt(w[2]));
 		c.set(Calendar.MONTH, Integer.parseInt(w[1]));
