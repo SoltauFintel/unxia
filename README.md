@@ -14,5 +14,7 @@ Features:
 bisher implementiert:
 - IBM Lotus Notes 8.5 Unterstuetzung
 
-geplant:
+angedacht:
 - Microsoft Outlook Unterstuetzung
+
+Dieses Projekt wird nicht mehr weiter entwickelt.
